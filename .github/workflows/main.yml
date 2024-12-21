@@ -1,0 +1,36 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Étape 1 : Cloner le dépôt
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Étape 2 : Installer Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Ou votre version Node.js
+
+      # Étape 3 : Installer les dépendances
+      - name: Install dependencies
+        run: npm install
+
+      # Étape 5 : Installer Railway CLI
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      # Étape 6 : Déployer sur Railway
+      - name: Deploy to Railway
+        env:
+          NODE_ENV: production # Définit NODE_ENV lors du déploiement
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up --service "centre_formation_back"
