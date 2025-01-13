@@ -1,4 +1,4 @@
-name: Deploy to Railway
+name: Test and Prepare for Render Deployment
 
 on:
   push:
@@ -24,13 +24,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Étape 5 : Installer Railway CLI
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
+      # Étape 4 : Exécuter les tests (si applicable)
+      - name: Run tests
+        run: npm test
 
-      # Étape 6 : Déployer sur Railway
-      - name: Deploy to Railway
-        env:
-          NODE_ENV: production # Définit NODE_ENV lors du déploiement
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: railway up --service "back_site"
+      # Étape 5 : Construire le projet (si applicable)
+      - name: Build the project
+        run: npm run build
