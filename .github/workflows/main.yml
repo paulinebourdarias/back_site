@@ -23,7 +23,3 @@ jobs:
       # Étape 3 : Installer les dépendances
       - name: Install dependencies
         run: npm install
-
-      # Étape 5 : Construire le projet (si applicable)
-      - name: Build the project
-        run: npm run build
