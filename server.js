@@ -5,6 +5,7 @@ const connectToDb = require('./db.js');
 require('dotenv').config();
 const cors = require('cors');
 const path = require("path");
+const https = require('https');
 
 
 
@@ -44,7 +45,10 @@ app.use('/formation', formation);
 const footer = require('./routes/footer.js')
 app.use('/footer', footer);
 
-
+setInterval(() => {
+    https.get('https://back-site-hh0b.onrender.com');
+    console.log('Auto-ping toutes les 10 minutes');
+}, 600000); // 600000 ms = 10 minutes
 
 
 app.listen(process.env.PORT, () => {
