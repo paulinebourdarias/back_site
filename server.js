@@ -48,7 +48,7 @@ app.use('/footer', footer);
 setInterval(() => {
     https.get('https://back-site-hh0b.onrender.com');
     console.log('Auto-ping toutes les 10 minutes');
-}, 600000); // 600000 ms = 10 minutes
+}, 6000000); // 600000 ms = 10 minutes
 
 
 app.listen(process.env.PORT, () => {
